@@ -1,0 +1,33 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif; /* Alap betűtípus */
+}
+
+.fejlec {
+    background-color: #4CAF50; /* Fejléc háttérszín */
+    color: white; /* Betűszín */
+    padding: 20px; /* Belső margó */
+    text-align: center; /* Középre igazítás */
+}
+
+.fejlec h1 {
+    font-weight: bold; /* Vastag betű */
+    margin: 0; /* Külső margó eltávolítása */
+}
+
+.content {
+    padding: 15px; /* Belső margó */
+    border: 2px solid #ccc; /* Határvonal */
+    text-align: center; /* Középre igazítás */
+    margin: 10px 0; /* Külső margó a tartalom elemek között */
+}
+
+/* Minden második elem háttérszínének beállítása */
+.content:nth-child(even) {
+    background-color: #f2f2f2; /* Második elem háttérszíne */
+}
+
+/* Hover hatás a tartalom elemekre */
+.content:hover {
+    background-color: #e0e0e0; /* Hover háttérszín */
+}
