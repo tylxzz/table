@@ -47,4 +47,12 @@ for (person of array) {
     row.appendChild(ln);
     row.appendChild(fn);
     tbody.appendChild(row);
+    row.addEventListener('click', function(e) {
+        console.log("clicked" + lastname);
+        const selectedrow = tbody.querySelector('.selected');
+        if (selectedrow != undefined) {
+            selectedrow.classList.remove('selected')
+        }
+        e.currentTarget.classList.add('selected');
+    })
 }
