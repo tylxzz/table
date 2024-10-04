@@ -65,11 +65,13 @@ for (const person of array) {
     ln.innerHTML = person.lastname;
     marriedTableBodyrow.innerHTML = person.married? "Igen":"Nem";
     petTableBodyRow.innerHTML = person.pet;
+
     row.appendChild(ln);
     row.appendChild(fn);
     row.appendChild(marriedTableBodyrow);
     row.appendChild(petTableBodyRow);
     tbody.appendChild(row);
+
     row.addEventListener('click', function(e) {
         console.log("clicked" + lastname);
         const selectedrow = tbody.querySelector('.selected');
@@ -77,5 +79,31 @@ for (const person of array) {
             selectedrow.classList.remove('selected')
         }
         e.currentTarget.classList.add('selected');
-    })
-}
+    });
+};
+
+const form = document.getElementById('form');
+form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const lastname = document.getElementById('lastname');
+    const firstname1 = document.getElementById('firstname1');
+    const firstname2 = document.getElementById('firstname2');
+    const married = document.getElementById('married');
+    const pet = document.getElementById('pet');
+
+    const lastnamevalue = lastname.value;
+    const firstname1value = firstname1.value;
+    const firstname2value = firstname2.value;
+    const marriedvalue = married.checked;
+    const petvalue = pet.value;
+
+    array.push({
+        lastname: lastnamevalue,
+        firstname1: firstname1value,
+        firstname2: firstname2value,
+        married: marriedvalue,
+        pet: petvalue
+    });
+    
+    console.log("array");
+});
