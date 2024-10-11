@@ -42,48 +42,17 @@ const married = document.createElement('th');
 married.innerHTML = "Házas";
 const pet = document.createElement('th');
 pet.innerHTML = "Állat";
-tableheaderRow.appendChild(firstname);
 tableheaderRow.appendChild(lastname);
+tableheaderRow.appendChild(firstname);
 tableheaderRow.appendChild(married);
 tableheaderRow.appendChild(pet);
 document.body.appendChild(table);
 const tbody = document.createElement('tbody');
 table.appendChild(tbody);
 
-for (const person of array) {
-    const row = document.createElement('tr');
-    const fn = document.createElement('td');
-    fn.innerHTML = person.firstname1
-    if (person.firstname2){
-        fn.innerHTML += " " + person.firstname2;
-    }
-    const ln = document.createElement('td');
-
-    const marriedTableBodyrow = document.createElement('td');
-    const petTableBodyRow = document.createElement('td');
-
-    ln.innerHTML = person.lastname;
-    marriedTableBodyrow.innerHTML = person.married? "Igen":"Nem";
-    petTableBodyRow.innerHTML = person.pet;
-
-    row.appendChild(ln);
-    row.appendChild(fn);
-    row.appendChild(marriedTableBodyrow);
-    row.appendChild(petTableBodyRow);
-    tbody.appendChild(row);
-
-    row.addEventListener('click', function(e) {
-        console.log("clicked" + lastname);
-        const selectedrow = tbody.querySelector('.selected');
-        if (selectedrow != undefined) {
-            selectedrow.classList.remove('selected')
-        }
-        e.currentTarget.classList.add('selected');
-    });
-};
-
 const form = document.getElementById('form');
 form.addEventListener('submit', function(e){
+    tbody.innerHTML = '';
     e.preventDefault();
     const lastname = document.getElementById('lastname');
     const firstname1 = document.getElementById('firstname1');
@@ -93,9 +62,13 @@ form.addEventListener('submit', function(e){
 
     const lastnamevalue = lastname.value;
     const firstname1value = firstname1.value;
-    const firstname2value = firstname2.value;
+    let firstname2value = firstname2.value;
     const marriedvalue = married.checked;
     const petvalue = pet.value;
+
+    if(firstname2value === ''){
+        firstname2value = undefined;
+    }
 
     array.push({
         lastname: lastnamevalue,
@@ -104,6 +77,46 @@ form.addEventListener('submit', function(e){
         married: marriedvalue,
         pet: petvalue
     });
+
+    renderTable();
     
-    console.log("array");
+    console.log(array);
 });
+
+renderTable();
+
+function renderTable() {
+    for (const person of array) {
+        const row = document.createElement('tr');
+        const fn = document.createElement('td');
+        const fn1 = document.createElement('td');
+        fn.innerHTML = person.firstname1
+        fn1.innerHTML = person.firstname2
+        if (person.firstname2){
+            fn.innerHTML += " " + person.firstname2;
+        }
+        const ln = document.createElement('td');
+    
+        const marriedTableBodyrow = document.createElement('td');
+        const petTableBodyRow = document.createElement('td');
+    
+        ln.innerHTML = person.lastname;
+        marriedTableBodyrow.innerHTML = person.married? "Igen":"Nem";
+        petTableBodyRow.innerHTML = person.pet;
+    
+        row.appendChild(ln);
+        row.appendChild(fn);
+        row.appendChild(marriedTableBodyrow);
+        row.appendChild(petTableBodyRow);
+        tbody.appendChild(row);
+    
+        row.addEventListener('click', function(e) {
+            console.log("clicked" + lastname);
+            const selectedrow = tbody.querySelector('.selected');
+            if (selectedrow != undefined) {
+                selectedrow.classList.remove('selected')
+            }
+            e.currentTarget.classList.add('selected');
+        });
+    };
+}
