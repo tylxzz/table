@@ -34,18 +34,12 @@ const tableheader = document.createElement('thead');
 table.appendChild(tableheader);
 const tableheaderRow = document.createElement('tr');
 tableheader.appendChild(tableheaderRow);
-const lastname = document.createElement('th');
-lastname.innerHTML = "Vezetéknév";
-const firstname = document.createElement('th');
-firstname.innerHTML = "Keresztnév";
-const married = document.createElement('th');
-married.innerHTML = "Házas";
-const pet = document.createElement('th');
-pet.innerHTML = "Állat";
-tableheaderRow.appendChild(lastname);
-tableheaderRow.appendChild(firstname);
-tableheaderRow.appendChild(married);
-tableheaderRow.appendChild(pet);
+
+createTableCell('th', 'Vezetéknév', tableheaderRow);
+createTableCell('th', 'Keresztnév', tableheaderRow);
+createTableCell('th', 'Házas', tableheaderRow);
+createTableCell('th', 'Állat', tableheaderRow);
+
 document.body.appendChild(table);
 const tbody = document.createElement('tbody');
 table.appendChild(tbody);
@@ -90,6 +84,7 @@ renderTable();
 function renderTable() {
     for (const person of array) {
         const row = document.createElement('tr');
+        tbody.appendChild(row);
         const fn = document.createElement('td');
         const fn1 = document.createElement('td');
         fn.innerHTML = person.firstname1
@@ -110,7 +105,7 @@ function renderTable() {
         row.appendChild(fn);
         row.appendChild(marriedTableBodyrow);
         row.appendChild(petTableBodyRow);
-        tbody.appendChild(row);
+
     
         row.addEventListener('click', function(e) {
             console.log("clicked" + lastname);
@@ -121,6 +116,20 @@ function renderTable() {
             e.currentTarget.classList.add('selected');
         });
     };
+}
+
+/**
+ * 
+ * @param {'td' | 'th'} tagName 
+ * @param {string} innerHTML 
+ * @param {HTMLTableRowElement} parent 
+ * @returns {HTMLTableCellElement}
+ */
+
+function createTableCell(tagName, innerHTML, parent){
+    const cell = document.createElement(tagName);
+    cell.innerHTML = innerHTML;
+    parent.appendChild(cell);
 }
 
 function validateFields(lastname, firstname, pet){
