@@ -124,6 +124,7 @@ function ValidateElement(element, errorMessages){
         error.innerHTML = errorMessages
         return false;
     }
-    else
+    else{
         return true;
+    }  
 }
