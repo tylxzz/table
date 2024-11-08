@@ -13,12 +13,26 @@ function createTableCell(tagName, innerHTML, parent){
     return cell;
 }
 
+/**
+ * 
+ * @param {string} tag 
+ * @param {string} id 
+ * @param {HTMLElement} parent
+ * @returns {HTMLElement}
+ */
 function createHTMLElement(tag, id, parent){
     const elem = document.createElement(tag);
     elem.id = id;
     parent.appendChild(elem);
 }
 
+/**
+ * 
+ * @param {string} tag 
+ * @param {string} id 
+ * @param {string} parentid 
+ * @returns {HTMLElement | undefined}
+ */
 function createHTMLElementWithParentId(tag, id, parentid){
     const parent = document.getElementById(parentid);
     if (parent != undefined){
@@ -26,8 +40,12 @@ function createHTMLElementWithParentId(tag, id, parentid){
     }  
 }
 
-function renderTableHeader(){
-    const parent = document.getElementById('persontr');
+/**
+ * 
+ * @param {string} persontr 
+ */
+function renderTableHeader(persontr){
+    const parent = document.getElementById(persontr);
     createTableCell('th', 'Vezetéknév', parent)
     const keresztnev = createTableCell('th', 'Keresztnév', parent);
     keresztnev.colSpan;
@@ -35,6 +53,10 @@ function renderTableHeader(){
     createTableCell('th', 'Állat', parent);
 }
 
+/**
+ * 
+ * @param {Array} personarray 
+ */
 function renderTable(personarray) {
     const tbody = document.getElementById('persontbody')
     for (const person of personarray) {
@@ -72,5 +94,3 @@ function renderTable(personarray) {
         });
     };
 }
-
-// Házi felkommentezés

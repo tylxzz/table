@@ -35,6 +35,7 @@ createHTMLElementWithParentId('tr', 'persontr', 'personthead')
 renderTableHeader('persontr')
 createHTMLElementWithParentId('tbody', 'persontbody', 'persontable')
 
+renderTable(array);
 
 const form = document.getElementById('form');
 form.addEventListener('submit', function(e){
@@ -73,7 +74,7 @@ form.addEventListener('submit', function(e){
     form.reset();
 });
 
-renderTable(array);
+
 
 function validateFields(lastname, firstname, pet){
     const errorMessages = form.querySelectorAll('.error')
