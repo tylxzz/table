@@ -40,12 +40,8 @@ function createHTMLElementWithParentId(tag, id, parentid){
     }  
 }
 
-/**
- * 
- * @param {string} persontr 
- */
-function renderTableHeader(persontr){
-    const parent = document.getElementById(persontr);
+function renderTableHeader(){
+    const parent = document.getElementById('persontr');
     createTableCell('th', 'Vezetéknév', parent)
     const keresztnev = createTableCell('th', 'Keresztnév', parent);
     keresztnev.colSpan;
@@ -93,4 +89,41 @@ function renderTable(personarray) {
             e.currentTarget.classList.add('selected');
         });
     };
+}
+
+/**
+ * 
+ * @param {*} lastname 
+ * @param {*} firstname 
+ * @param {*} pet 
+ * @returns {bool}
+ */
+function validateFields(lastname, firstname, pet){
+    let result = true;
+    const errorMessages = form.querySelectorAll('.error')
+    for(const error of errorMessages){
+        error.innerHTML = ''
+    }
+    
+    result = ValidateElement(lastname, 'Vezetéknév kötelező!')
+    result = ValidateElement(firstname, 'Keresztnév kötelező!')
+    result = ValidateElement(pet, 'Állat kötelező!')
+
+    return result;
+}   
+
+/**
+ * 
+ * @param {HTMLElememt} element 
+ * @param {string} errorMessages 
+ * @returns {bool}
+ */
+function ValidateElement(element, errorMessages){
+    if(element.value === ''){
+        const error = element.parentElement.querySelector('.error')
+        error.innerHTML = errorMessages
+        return false;
+    }
+    else
+        return true;
 }

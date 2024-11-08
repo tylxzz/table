@@ -73,34 +73,3 @@ form.addEventListener('submit', function(e){
     console.log(array);
     form.reset();
 });
-
-
-
-function validateFields(lastname, firstname, pet){
-    const errorMessages = form.querySelectorAll('.error')
-    for(const error of errorMessages){
-        error.innerHTML = ''
-    }
-    let result = true;
-
-    if(lastname.value === ''){
-        let error = lastname.parentElement.querySelector('.error')
-        error.innerHTML = 'Vezetéknév kötelező!'
-        result = false
-    }
-
-    if(firstname.value === ''){
-        let error = firstname1.parentElement.querySelector('.error')
-        error.innerHTML = 'Keresztnév kötelező!'
-        result = false
-    }
-
-    if(pet.value === ''){
-        let error = pet.parentElement.querySelector('.error')
-        error.innerHTML = 'Állat kötelező!'
-        result = false
-    }
-
-    return result;
-}
-
